@@ -1,4 +1,5 @@
 /* 
+* ESTE ES EL EJERCICIO NO. 1
  * File:   main.c
  * Author: paola
  *
@@ -54,15 +55,15 @@ void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
         
         val_temporal = SSPBUF;
-        if (val_temporal != FLAG_SPI){  // Es envío solo para generar los pulsos de reloj?
+        if (val_temporal != FLAG_SPI){  // Es envÃ­o solo para generar los pulsos de reloj?
             PORTD = val_temporal;       // Mostramos valor recibido en PORTD
        
             SSPBUF = cont_s*2;        // Cargamos contador del esclavo al buffer
             PORTB = cont_s;         // Mostramos contador en PORTB
-            cont_s++;               // Multiplicamos el valor del slave en el próximo envío
+            cont_s++;               // Multiplicamos el valor del slave en el prÃ³ximo envÃ­o
         }
         
-        PIR1bits.SSPIF = 0;             // Limpiamos bandera de interrupción
+        PIR1bits.SSPIF = 0;             // Limpiamos bandera de interrupciÃ³n
     }
     return;
 }
@@ -79,17 +80,17 @@ void main(void) {
  /*
     setup();
     while(1){        
-        // Envío y recepción de datos en maestro
-        if (PORTAbits.RA0){         // ¿Es maestro?
-            // Preparamos envío del contador del maestro al esclavo
+        // EnvÃ­o y recepciÃ³n de datos en maestro
+        if (PORTAbits.RA0){         // Â¿Es maestro?
+            // Preparamos envÃ­o del contador del maestro al esclavo
             SSPBUF = cont_m;   // Cargamos valor del contador al buffer
             while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
             PORTB = cont_m;    // Mostramos valor del contador del maestro en PORTB
             cont_m++;          // Incrementamos contador del maestro
 
-             //Ciertos dispositivos que usan comunicación SPI en modo esclavo
-             //necesitan un cambio en la señal en el selector de esclavo (ss)
-             //para generar una acción, el PIC es uno de ellos. Entonces para que
+             //Ciertos dispositivos que usan comunicaciÃ³n SPI en modo esclavo
+             //necesitan un cambio en la seÃ±al en el selector de esclavo (ss)
+             //para generar una acciÃ³n, el PIC es uno de ellos. Entonces para que
              //el uC pueda enviar datos al maestro, es necesario generar ese cambio
              //en el pin RA5 del esclavo
              
@@ -99,7 +100,7 @@ void main(void) {
             __delay_ms(10);         // Esperamos un tiempo para que el PIC pueda detectar el cambio en el pin
             PORTAbits.RA7 = 0;      // habilitamos nuevamente el escalvo
             
-            SSPBUF = FLAG_SPI;      // Se envía cualquier cosa, Esto es para que el maestro  
+            SSPBUF = FLAG_SPI;      // Se envÃ­a cualquier cosa, Esto es para que el maestro  
                                     //  genere los pulsos del reloj que necesita el esclavo
                                     //  para transmitir datos.
             while(!SSPSTATbits.BF){}// Esperamos a que se reciba un dato
@@ -137,7 +138,7 @@ void setup(void){
     OSCCONbits.IRCF = 0b100;    // 1MHz
     OSCCONbits.SCS = 1;         // Reloj interno
     
-    // Configuración de SPI
+    // ConfiguraciÃ³n de SPI
     // Configs de Maestro
     if(PORTAbits.RA0){
         TRISC = 0b00010000;         // -> SDI entrada, SCK y SD0 como salida
