@@ -1,0 +1,9 @@
+1. Dentro de las configuraciones se coloca una condición la cual permita saber si  
+el reloj de comunicación(SCK) funciona como entrada o salida. O bien, se debe mandar 
+un instrucción por parte del maestro al slave para que el slave le duevuelva un dato. 
+
+2. Espera a que se reciba un dato y luego de coloca el puerto o pin al cual uno desea 
+visualizar lo guardado en SSPBUF. Se coloca en la configuración del maestro para que 
+genere los pulsos de reloj. 
+
+3. Asigna un nombre nuevo a un tipo de dato y para la librería mantiene un orden comparado.
